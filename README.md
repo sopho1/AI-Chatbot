@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# AI Chatbot
+A modern, responsive AI-powered chatbot built with React and the Hugging Face Inference API. This project allows users to interact with a conversational AI model (mistralai/Mixtral-8x7B-Instruct-v0.1) in a sleek, user-friendly interface featuring light/dark theme toggling, smooth animations, and mobile responsiveness. Perfect for developers exploring AI integration or building interactive chat applications without billing requirements.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Features
 
-## Available Scripts
+1. AI-Powered Conversations: Leverages Hugging Face’s free Inference API for natural, context-aware responses.
 
-In the project directory, you can run:
+2. Modern UI: Clean design with animated messages, custom scrollbars, and a responsive layout.
 
-### `npm start`
+3. Theme Toggle: Switch between light and dark themes for accessibility and user preference.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. Real-Time Feedback: Loading animations and error handling for a seamless experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+5. No Billing Required: Uses Hugging Face’s free tier, ideal for prototyping and hobbyist projects.
 
-### `npm test`
+6. Extensible: Easily swap AI models or add features like conversation history or avatars.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Tech Stack
 
-### `npm run build`
+Frontend: React (v18.x), JavaScript, CSS3
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+API: Hugging Face Inference API (mistralai/Mixtral-8x7B-Instruct-v0.1)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Dependencies: Axios (HTTP requests), dotenv (environment variables)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Tools: Node.js, npm, Create React App
 
-### `npm run eject`
+Styling: Custom CSS with Inter font, animations, and theme toggling
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Prerequisites
+Before running the project, ensure you have:
+Node.js (v16 or higher) and npm installed. Download here.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A Hugging Face account and API key (free, no billing required).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+A code editor like VS Code.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Basic knowledge of React and JavaScript.
 
-## Learn More
+# Setup Instructions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Follow these steps to get the chatbot running locally:
+Clone the Repository:
+bash
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. git clone https://github.com/your-username/ai-chatbot.git
+2. cd ai-chatbot
 
-### Code Splitting
+# Install Dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm install
 
-### Analyzing the Bundle Size
+# Get a Hugging Face API Key:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Sign up at huggingface.co.
 
-### Making a Progressive Web App
+Go to Profile > Settings > Access Tokens.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Create a new token with Read access and copy it.
 
-### Advanced Configuration
+# Configure Environment Variables:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Create a .env file in the project root:
 
-### Deployment
+touch .env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. Add your API key:
 
-### `npm run build` fails to minify
+REACT_APP_HF_API_KEY=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. Run the App:
+
+npm start
+
+The app will open at http://localhost:3000 in your browser.
+
+Interact with the Chatbot:
+Type a message (e.g., “What’s the capital of France?”) and press Enter or click “Send.”
+
+Toggle between light and dark themes using the / button.
+
+# License
+
+This project is licensed under the MIT License (LICENSE). See the LICENSE file for details.
+
+# Acknowledgments
+
+Hugging Face: For providing a free, accessible Inference API.
+
+React: For powering the frontend.
+
+Inter Font: For clean typography.
+
+Inspired by modern chat UI designs and open-source AI projects.
+
