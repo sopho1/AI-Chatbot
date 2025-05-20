@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -6,11 +6,27 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Check system preference for dark mode
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDarkTheme(prefersDark);
+    document.body.classList.toggle('dark-theme', prefersDark);
+  }, []);
+
+  useEffect(() => {
+    // Scroll to bottom when new messages arrive
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-    document.body.classList.toggle('dark-theme');
+    const newTheme = !isDarkTheme;
+    setIsDarkTheme(newTheme);
+    document.body.classList.toggle('dark-theme', newTheme);
   };
 
   const sendMessage = async () => {
@@ -46,7 +62,7 @@ function App() {
     } catch (error) {
       console.error('Error details:', error.response?.data, error.response?.status, error.response?.headers);
       const errorMessage = {
-        text: error.response?.data?.error || 'Sorry, I couldn’t connect to the AI. Please try again.',
+        text: error.response?.data?.error || "Sorry, I couldn't connect to the AI. Please try again.",
         sender: 'ai',
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -56,18 +72,19 @@ function App() {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !isLoading) {
+    if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
+      e.preventDefault();
       sendMessage();
     }
   };
 
   return (
-    <div className="App">
+    <div className={`App ${isDarkTheme ? 'dark-theme' : ''}`}>
       <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
         {isDarkTheme ? '☀️' : '🌙'}
       </button>
-      <h1>AI Chatbot (Powered by Hugging Face)</h1>
-      <div className="chat-container">
+      <h1>AI Chatbot</h1>
+      <div className="chat-container" ref={chatContainerRef}>
         {messages.map((message, index) => (
           <div
             key={index}
@@ -76,7 +93,7 @@ function App() {
             {message.text}
           </div>
         ))}
-        {isLoading && <div className="message ai loading">Thinking...</div>}
+        {isLoading && <div className="message ai loading">Thinking</div>}
       </div>
       <div className="input-container">
         <input
@@ -90,6 +107,9 @@ function App() {
         <button onClick={sendMessage} disabled={isLoading}>
           Send
         </button>
+      </div>
+      <div className="credits">
+        Created by Sophonias
       </div>
     </div>
   );
