@@ -79,10 +79,6 @@ Type a message (e.g., “What’s the capital of France?”) and press Enter or 
 
 Toggle between light and dark themes using the / button.
 
-# License
-
-This project is licensed under the MIT License (LICENSE). See the LICENSE file for details.
-
 # Acknowledgments
 
 Hugging Face: For providing a free, accessible Inference API.
